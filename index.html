@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Nghe Chép Chính Tả - Tiếng Anh Lớp 5 (Thì Hiện Tại Đơn)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        kidYellow: '#fef08a',
+                        kidGreen: '#4ade80',
+                        kidPurple: '#a855f7',
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Lexend', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+        }
+        .font-heading {
+            font-family: 'Lexend', sans-serif;
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.15), 0 8px 10px -6px rgba(14, 165, 233, 0.1);
+        }
+        .pulse-wave {
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(2, 132, 199, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-sky-100 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center text-white text-xl shadow-md">
+                    <i class="fa-solid fa-headphones"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-extrabold text-lg md:text-xl text-sky-900 leading-tight">Dictation English 5</h1>
+                    <p class="text-xs text-sky-600 font-medium">Thì Hiện Tại Đơn (Present Simple Tense)</p>
+                </div>
+            </div>
+
+            <!-- Role Switcher Tabs -->
+            <div id="roleSwitcherContainer" class="flex items-center bg-sky-50 p-1 rounded-xl border border-sky-100">
+                <button id="tabStudentBtn" onclick="switchView('student')" class="px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-sky-700 shadow-sm">
+                    <i class="fa-solid fa-user-graduate mr-1.5"></i>Học Sinh
+                </button>
+                <button id="tabTeacherBtn" onclick="requestTeacherAccess()" class="px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-600 hover:text-sky-700">
+                    <i class="fa-solid fa-chalkboard-user mr-1.5"></i>Cô Giáo
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto w-full px-4 py-6 flex-grow">
+
+        <!-- ================= STUDENT VIEW ================= -->
+        <section id="studentView" class="space-y-6">
+
+            <!-- Step 1: Student Information Form -->
+            <div id="studentInfoCard" class="bg-white rounded-3xl p-6 md:p-8 border-2 border-sky-100 custom-shadow text-center max-w-lg mx-auto">
+                <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                    <i class="fa-solid fa-pen-sparkles"></i>
+                </div>
+                <h2 class="font-heading font-bold text-2xl text-slate-800 mb-2">Bắt Đầu Bài Nghe Dictation</h2>
+                <p class="text-sm text-slate-500 mb-6">Em hãy nhập Họ tên và Lớp để gửi kết quả cho cô giáo nhé!</p>
+
+                <form onsubmit="startDictation(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Họ và tên học sinh (*)</label>
+                        <input type="text" id="studentNameInput" required placeholder="Ví dụ: Nguyễn Văn An" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none text-base font-medium transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Lớp (*)</label>
+                        <input type="text" id="studentClassInput" required placeholder="Ví dụ: 5A1" class="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none text-base font-medium transition-all">
+                    </div>
+                    
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-600 hover:to-indigo-700 text-white font-heading font-extrabold text-lg rounded-2xl shadow-lg shadow-sky-500/25 transition-all transform active:scale-95 flex items-center justify-center space-x-2">
+                        <span>Vào Bài Nghe (10 Câu)</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Step 2: Practice Container (Hidden by default) -->
+            <div id="practiceContainer" class="hidden space-y-6">
+
+                <!-- Progress Header -->
+                <div class="bg-white rounded-2xl p-4 border border-sky-100 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3">
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                        <span id="studentDisplayBadge" class="bg-sky-100 text-sky-800 font-extrabold text-xs px-3 py-1.5 rounded-xl flex items-center">
+                            <i class="fa-solid fa-user-circle mr-1.5 text-sm"></i>
+                            <span id="badgeInfo">Học sinh: --</span>
+                        </span>
+                        <span id="attemptDisplayBadge" class="bg-amber-100 text-amber-800 font-extrabold text-xs px-3 py-1.5 rounded-xl">
+                            Lần làm thứ: <span id="attemptCountText">1</span>
+                        </span>
+                    </div>
+
+                    <div class="w-full md:w-1/2 flex items-center space-x-3">
+                        <div class="flex-grow bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div id="progressBar" class="bg-gradient-to-r from-sky-400 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+                        </div>
+                        <span id="progressText" class="font-heading font-bold text-sm text-sky-800 whitespace-nowrap">Câu 1/10</span>
+                    </div>
+                </div>
+
+                <!-- Main Question Card -->
+                <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-sky-100 custom-shadow space-y-6">
+                    
+                    <!-- Audio Listening Control Panel -->
+                    <div class="bg-gradient-to-br from-sky-50 to-indigo-50/50 rounded-2xl p-6 border border-sky-100 text-center space-y-4">
+                        <div class="inline-flex items-center justify-center space-x-2 bg-sky-200/50 px-3 py-1 rounded-full text-xs font-bold text-sky-700">
+                            <i class="fa-solid fa-volume-high"></i>
+                            <span>Bấm để nghe câu nói</span>
+                        </div>
+
+                        <!-- Voice Gender Selector -->
+                        <div class="flex items-center justify-center space-x-3 text-xs font-bold text-slate-600 my-1">
+                            <span class="text-slate-500">Giọng đọc:</span>
+                            <button id="voiceFemaleBtn" type="button" onclick="setVoiceGender('female')" class="px-3 py-1.5 rounded-xl border bg-sky-500 text-white border-sky-500 flex items-center space-x-1.5 transition-all shadow-sm">
+                                <i class="fa-solid fa-venus"></i>
+                                <span>Giọng Nữ</span>
+                            </button>
+                            <button id="voiceMaleBtn" type="button" onclick="setVoiceGender('male')" class="px-3 py-1.5 rounded-xl border bg-white text-slate-600 border-slate-200 hover:border-sky-300 flex items-center space-x-1.5 transition-all">
+                                <i class="fa-solid fa-mars"></i>
+                                <span>Giọng Nam</span>
+                            </button>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-center gap-4 pt-1">
+                            <!-- Normal Speed Button -->
+                            <button onclick="playAudio(1.0)" id="playNormalBtn" class="px-6 py-3.5 bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-heading font-bold rounded-2xl shadow-lg shadow-sky-500/25 transition-all flex items-center space-x-2 text-base">
+                                <i class="fa-solid fa-play text-lg"></i>
+                                <span>Nghe Tốc Độ Thường</span>
+                            </button>
+
+                            <!-- Slow Speed Button -->
+                            <button onclick="playAudio(0.65)" id="playSlowBtn" class="px-5 py-3.5 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-heading font-bold rounded-2xl shadow-lg shadow-amber-500/25 transition-all flex items-center space-x-2 text-base">
+                                <i class="fa-solid fa-turtle text-lg"></i>
+                                <span>Nghe Chậm (Slow)</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-slate-500 italic">Em có thể bấm nghe đi nghe lại bao nhiêu lần tùy thích!</p>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <label for="dictationInput" class="font-heading font-bold text-slate-700 text-base">
+                                Em nghe được gì? Hãy gõ lại vào đây:
+                            </label>
+                            <button onclick="clearInput()" class="text-xs font-bold text-slate-400 hover:text-slate-600">
+                                <i class="fa-solid fa-rotate-left mr-1"></i>Xóa gõ lại
+                            </button>
+                        </div>
+
+                        <textarea id="dictationInput" rows="3" placeholder="Nhập câu tiếng Anh em vừa nghe..." class="w-full p-4 rounded-2xl border-2 border-slate-200 focus:border-sky-500 focus:ring-4 focus:ring-sky-100 outline-none text-lg font-medium transition-all resize-none"></textarea>
+
+                        <!-- Quick Punctuation Keyboard Helper for Kids -->
+                        <div class="flex items-center space-x-2 text-xs">
+                            <span class="text-slate-400 font-bold">Thêm nhanh dấu:</span>
+                            <button onclick="insertPunctuation('.')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg font-bold text-slate-700">.</button>
+                            <button onclick="insertPunctuation(',')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg font-bold text-slate-700">,</button>
+                            <button onclick="insertPunctuation('\'')" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg font-bold text-slate-700">'</button>
+                        </div>
+                    </div>
+
+                    <!-- Instant Question Feedback Box -->
+                    <div id="feedbackBox" class="hidden rounded-2xl p-4 border transition-all space-y-2">
+                        <div class="flex items-center space-x-2 font-heading font-bold text-sm" id="feedbackHeader"></div>
+                        <div class="text-sm font-medium" id="feedbackDiff"></div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex items-center justify-between pt-2">
+                        <button id="retrySentenceBtn" onclick="retrySentence()" class="hidden px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition-all">
+                            <i class="fa-solid fa-arrows-rotate mr-1.5"></i>Làm lại câu này
+                        </button>
+
+                        <div class="ml-auto flex items-center space-x-3">
+                            <button id="checkAnswerBtn" onclick="checkAnswer()" class="px-7 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-heading font-extrabold text-base rounded-xl shadow-md transition-all active:scale-95">
+                                Kiểm Tra Câu Bày
+                            </button>
+                            <button id="nextQuestionBtn" onclick="nextQuestion()" class="hidden px-7 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-heading font-extrabold text-base rounded-xl shadow-md transition-all active:scale-95 flex items-center space-x-2">
+                                <span>Câu Tiếp Theo</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Step 3: Complete Certificate Card (Hidden by default) -->
+            <div id="resultCertificateCard" class="hidden space-y-6">
+
+                <!-- Printable/Screenshot Target Card -->
+                <div id="printableCertificate" class="bg-white rounded-3xl p-6 md:p-8 border-4 border-sky-200 custom-shadow text-center space-y-6 relative overflow-hidden">
+                    <!-- Decorative Badge Header -->
+                    <div class="absolute -right-12 -top-12 w-32 h-32 bg-amber-200 rounded-full opacity-40 blur-xl"></div>
+                    <div class="absolute -left-12 -bottom-12 w-32 h-32 bg-sky-200 rounded-full opacity-40 blur-xl"></div>
+
+                    <div class="relative z-10 space-y-4">
+                        <div class="inline-flex items-center justify-center w-20 h-20 bg-amber-100 text-amber-500 rounded-3xl text-4xl shadow-inner">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+
+                        <div>
+                            <span class="bg-sky-100 text-sky-800 text-xs font-extrabold uppercase px-3 py-1 rounded-full">Phiếu Báo Kết Quả Học Tập</span>
+                            <h2 class="font-heading font-extrabold text-3xl text-slate-800 mt-2">BÀI THI NGHE DICTATION</h2>
+                            <p class="text-xs text-slate-500 font-semibold">Chủ đề: Câu Khẳng Định - Thì Hiện Tại Đơn (Tiếng Anh Lớp 5)</p>
+                        </div>
+
+                        <!-- Student Information Banner -->
+                        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200 max-w-md mx-auto grid grid-cols-2 gap-2 text-left text-sm">
+                            <div><span class="text-slate-400 text-xs block font-bold">HỌ VÀ TÊN</span> <strong id="resName" class="text-slate-800 font-extrabold">--</strong></div>
+                            <div><span class="text-slate-400 text-xs block font-bold">LỚP</span> <strong id="resClass" class="text-slate-800 font-extrabold">--</strong></div>
+                            <div><span class="text-slate-400 text-xs block font-bold">SỐ LẦN LÀM LẠI</span> <strong id="resAttempts" class="text-amber-600 font-extrabold">1</strong></div>
+                            <div><span class="text-slate-400 text-xs block font-bold">THỜI GIAN NỘP</span> <strong id="resTime" class="text-slate-700 font-bold">--</strong></div>
+                        </div>
+
+                        <!-- Big Score Display -->
+                        <div class="bg-gradient-to-r from-sky-500 to-indigo-600 rounded-3xl p-6 text-white max-w-md mx-auto shadow-xl space-y-1">
+                            <div class="text-xs font-bold uppercase tracking-wider text-sky-100">ĐIỂM SỐ ĐẠT ĐƯỢC</div>
+                            <div class="font-heading font-black text-5xl md:text-6xl tracking-tight" id="resScore">100/100</div>
+                            <div class="text-sm font-bold pt-2 text-amber-300" id="resGradeTitle">Xuất Sắc! 🎉</div>
+                        </div>
+
+                        <!-- Sentence Breakdown Details -->
+                        <div class="text-left space-y-3 pt-4">
+                            <h3 class="font-heading font-bold text-slate-800 text-base flex items-center justify-between">
+                                <span><i class="fa-solid fa-list-check text-sky-500 mr-2"></i>Chi Tiết 10 Câu Đã Nghe & Đáp Án:</span>
+                                <span class="text-xs text-slate-400 font-normal">(Hãy chụp ảnh màn hình bảng này cho cô)</span>
+                            </h3>
+
+                            <div id="sentenceBreakdownList" class="space-y-3 max-h-96 overflow-y-auto pr-1">
+                                <!-- Dynamic sentence review item inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Controls for Student -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button onclick="retakeFullQuiz()" class="w-full sm:w-auto px-6 py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-heading font-bold rounded-2xl shadow-lg shadow-amber-500/25 transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Làm Lại Bài Thi Nghe</span>
+                    </button>
+
+                    <button onclick="window.print()" class="w-full sm:w-auto px-6 py-3.5 bg-sky-600 hover:bg-sky-700 text-white font-heading font-bold rounded-2xl shadow-lg shadow-sky-600/25 transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-camera"></i>
+                        <span>In / Lưu Ảnh Kết Quả</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= TEACHER VIEW ================= -->
+        <section id="teacherView" class="hidden space-y-6">
+
+            <div class="bg-white rounded-3xl p-6 md:p-8 border-2 border-indigo-100 custom-shadow space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-6">
+                    <div>
+                        <span class="bg-indigo-100 text-indigo-800 font-extrabold text-xs px-3 py-1 rounded-full uppercase">Bảng Quản Lý Dành Cho Giáo Viên</span>
+                        <h2 class="font-heading font-extrabold text-2xl text-slate-800 mt-1">Danh Sách Học Sinh Làm Bài Nghe</h2>
+                        <p class="text-xs text-slate-500">Xem điểm, số lần làm lại và chi tiết các câu làm sai của từng em học sinh.</p>
+                    </div>
+
+                    <button onclick="fetchTeacherData()" class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-xl text-sm transition-all flex items-center space-x-2 self-start md:self-auto">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>Cập Nhật Dữ Liệu</span>
+                    </button>
+                </div>
+
+                <!-- Filter & Search Controls -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <input type="text" id="teacherSearchInput" oninput="filterSubmissions()" placeholder="Tìm theo tên học sinh..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none text-sm focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <select id="teacherClassFilter" onchange="filterSubmissions()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none text-sm focus:border-indigo-500">
+                            <option value="">Tất cả các lớp</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Table Container -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-50 font-heading font-bold text-slate-600 text-xs uppercase border-b border-slate-200">
+                            <tr>
+                                <th class="p-3.5">Học Sinh</th>
+                                <th class="p-3.5">Lớp</th>
+                                <th class="p-3.5 text-center">Điểm Số</th>
+                                <th class="p-3.5 text-center">Số Lần Làm</th>
+                                <th class="p-3.5">Thời Gian</th>
+                                <th class="p-3.5 text-center">Hành Động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacherTableBody" class="divide-y divide-slate-100 font-medium">
+                            <tr>
+                                <td colspan="6" class="p-6 text-center text-slate-400">
+                                    <i class="fa-solid fa-spinner fa-spin text-indigo-500 text-xl mb-2 block"></i>
+                                    Đang tải danh sách kết quả học sinh...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Detailed Student Answer Inspection Modal for Teacher -->
+    <div id="detailModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 md:p-8 space-y-6 max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-100">
+            <div class="flex items-center justify-between border-b pb-4">
+                <div>
+                    <h3 class="font-heading font-extrabold text-xl text-slate-800" id="modalStudentName">Chi Tiết Bài Làm</h3>
+                    <p class="text-xs text-slate-500" id="modalStudentMeta">--</p>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="modalBreakdownList" class="space-y-3">
+                <!-- Modal content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Password Verification Modal -->
+    <div id="teacherAuthModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center space-y-4 shadow-2xl border border-slate-100">
+            <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div>
+                <h3 class="font-heading font-extrabold text-lg text-slate-800">Xác Nhận Quyền Cô Giáo</h3>
+                <p class="text-xs text-slate-500 mt-1">Nhập mật khẩu để xem danh sách kết quả học sinh</p>
+            </div>
+            <div>
+                <input type="password" id="teacherPassInput" placeholder="Nhập mật khẩu cô giáo" class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-200 focus:border-indigo-500 text-center font-bold outline-none text-base">
+                <p id="passErrorMsg" class="text-xs text-red-500 font-bold mt-1 hidden">Mật khẩu chưa đúng, vui lòng thử lại!</p>
+            </div>
+            <div class="flex space-x-2 pt-2">
+                <button onclick="closeTeacherAuthModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-sm transition-all">Hủy</button>
+                <button onclick="verifyTeacherPass()" class="w-1/2 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm transition-all">Vào Bảng Cô</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-4 text-center text-xs text-slate-400">
+        <p>© Bài luyện nghe Dictation - Thì Hiện Tại Đơn | Dành cho học sinh Lớp 5</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Firebase Configuration setup
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'dictation-grade5-app';
+        let firebaseConfig = {};
+        try {
+            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        } catch (e) {
+            console.error("Firebase config error:", e);
+        }
+
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+
+        // Initialize Firebase safely
+        if (firebaseConfig.apiKey) {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+
+            // Auth Rule Compliance
+            async function authenticate() {
+                try {
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        const userCred = await signInWithCustomToken(auth, __initial_auth_token);
+                        currentUser = userCred.user;
+                    } else {
+                        const userCred = await signInAnonymously(auth);
+                        currentUser = userCred.user;
+                    }
+                } catch (err) {
+                    console.error("Auth error:", err);
+                }
+            }
+            authenticate();
+        }
+
+        // Expose Firebase functions globally
+        window.saveSubmissionToCloud = async function(data) {
+            if (!db || !auth) {
+                console.log("Firebase not configured, local simulation mode.");
+                saveLocalSubmission(data);
+                return;
+            }
+            try {
+                if (!auth.currentUser) {
+                    await signInAnonymously(auth);
+                }
+                const pathCollection = collection(db, 'artifacts', appId, 'public', 'data', 'student_submissions');
+                await addDoc(pathCollection, {
+                    ...data,
+                    timestamp: new Date().toISOString()
+                });
+                console.log("Submitted successfully to Firestore!");
+            } catch (err) {
+                console.error("Error saving submission:", err);
+                saveLocalSubmission(data);
+            }
+        };
+
+        window.listenTeacherData = function(callback) {
+            if (!db) {
+                callback(getLocalSubmissions());
+                return;
+            }
+            try {
+                const pathCollection = collection(db, 'artifacts', appId, 'public', 'data', 'student_submissions');
+                onSnapshot(pathCollection, (snapshot) => {
+                    const list = [];
+                    snapshot.forEach((doc) => {
+                        list.push({ id: doc.id, ...doc.data() });
+                    });
+                    callback(list);
+                }, (error) => {
+                    console.error("Teacher snapshot error:", error);
+                    callback(getLocalSubmissions());
+                });
+            } catch (e) {
+                console.error("Error listening to teacher data:", e);
+                callback(getLocalSubmissions());
+            }
+        };
+
+        function saveLocalSubmission(data) {
+            const existing = getLocalSubmissions();
+            existing.push({ id: 'local_' + Date.now(), ...data, timestamp: new Date().toISOString() });
+            localStorage.setItem('dictation_g5_submissions', JSON.stringify(existing));
+        }
+
+        function getLocalSubmissions() {
+            try {
+                return JSON.parse(localStorage.getItem('dictation_g5_submissions') || '[]');
+            } catch (e) {
+                return [];
+            }
+        }
+    </script>
+
+    <script>
+        // 10 Dictation Sentences suitable for Grade 5 (Present Simple Affirmative)
+        const QUESTIONS = [
+            {
+                id: 1,
+                sentence: "She is a good student.",
+                type: "to_be",
+                translation: "Cô ấy là một học sinh ngoan."
+            },
+            {
+                id: 2,
+                sentence: "They are happy today.",
+                type: "to_be",
+                translation: "Hôm nay họ rất vui vẻ."
+            },
+            {
+                id: 3,
+                sentence: "My father is a doctor.",
+                type: "to_be",
+                translation: "Bố tôi là một bác sĩ."
+            },
+            {
+                id: 4,
+                sentence: "I get up early every morning.",
+                type: "verb",
+                translation: "Tôi thức dậy sớm mỗi sáng."
+            },
+            {
+                id: 5,
+                sentence: "He plays football every afternoon.",
+                type: "verb",
+                translation: "Cậu ấy chơi bóng đá vào mỗi buổi chiều."
+            },
+            {
+                id: 6,
+                sentence: "We live in a big house.",
+                type: "verb",
+                translation: "Chúng tôi sống trong một ngôi nhà lớn."
+            },
+            {
+                id: 7,
+                sentence: "She likes ice cream very much.",
+                type: "verb",
+                translation: "Cô ấy rất thích ăn kem."
+            },
+            {
+                id: 8,
+                sentence: "The cat sleeps under the table.",
+                type: "verb",
+                translation: "Con mèo ngủ ở dưới bàn."
+            },
+            {
+                id: 9,
+                sentence: "My teacher is very kind.",
+                type: "to_be",
+                translation: "Giáo viên của tôi rất tốt bụng."
+            },
+            {
+                id: 10,
+                sentence: "They watch television in the evening.",
+                type: "verb",
+                translation: "Họ xem tivi vào buổi tối."
+            }
+        ];
+
+        // State variables
+        let studentInfo = { name: '', className: '' };
+        let attemptCount = 1;
+        let currentQuestionIndex = 0;
+        let studentAnswers = []; // holds { questionId, targetSentence, typedAnswer, isCorrect, mistakes }
+        let currentView = 'student';
+        let allSubmissions = [];
+        const TEACHER_PIN = "1702"; // Teacher Password updated to 1702
+
+        // Voice Engine setup
+        let availableVoices = [];
+        let selectedGender = 'female';
+
+        function loadVoices() {
+            if (!('speechSynthesis' in window)) return;
+            availableVoices = window.speechSynthesis.getVoices();
+        }
+
+        if ('speechSynthesis' in window) {
+            loadVoices();
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        }
+
+        function getBestVoice(gender) {
+            if (!availableVoices.length) loadVoices();
+            const enVoices = availableVoices.filter(v => v.lang && v.lang.startsWith('en'));
+            if (enVoices.length === 0) return null;
+
+            const femaleKeywords = ['female', 'zira', 'samantha', 'victoria', 'karen', 'fiona', 'google us english', 'jenny', 'aria', 'siri', 'natural'];
+            const maleKeywords = ['male', 'david', 'george', 'mark', 'james', 'alex', 'daniel', 'guy', 'ryan', 'steffan'];
+
+            if (gender === 'male') {
+                const maleVoice = enVoices.find(v => maleKeywords.some(k => v.name.toLowerCase().includes(k)));
+                if (maleVoice) return maleVoice;
+            } else {
+                const femaleVoice = enVoices.find(v => femaleKeywords.some(k => v.name.toLowerCase().includes(k)));
+                if (femaleVoice) return femaleVoice;
+            }
+
+            // Fallback: search for google or natural high-quality standard voices
+            const premiumVoice = enVoices.find(v => v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('natural'));
+            return premiumVoice || enVoices[0];
+        }
+
+        function setVoiceGender(gender) {
+            selectedGender = gender;
+            const femaleBtn = document.getElementById('voiceFemaleBtn');
+            const maleBtn = document.getElementById('voiceMaleBtn');
+            
+            if (gender === 'female') {
+                femaleBtn.className = "px-3 py-1.5 rounded-xl border bg-sky-500 text-white border-sky-500 flex items-center space-x-1.5 transition-all shadow-sm";
+                maleBtn.className = "px-3 py-1.5 rounded-xl border bg-white text-slate-600 border-slate-200 hover:border-sky-300 flex items-center space-x-1.5 transition-all";
+            } else {
+                maleBtn.className = "px-3 py-1.5 rounded-xl border bg-indigo-600 text-white border-indigo-600 flex items-center space-x-1.5 transition-all shadow-sm";
+                femaleBtn.className = "px-3 py-1.5 rounded-xl border bg-white text-slate-600 border-slate-200 hover:border-sky-300 flex items-center space-x-1.5 transition-all";
+            }
+        }
+
+        // Check URL parameter on load to enforce Student-Only Mode
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('role') === 'student' || urlParams.get('mode') === 'student') {
+                const teacherBtn = document.getElementById('tabTeacherBtn');
+                if (teacherBtn) teacherBtn.classList.add('hidden');
+            }
+        });
+
+        function requestTeacherAccess() {
+            document.getElementById('teacherPassInput').value = '';
+            document.getElementById('passErrorMsg').classList.add('hidden');
+            document.getElementById('teacherAuthModal').classList.remove('hidden');
+            setTimeout(() => document.getElementById('teacherPassInput').focus(), 100);
+        }
+
+        function closeTeacherAuthModal() {
+            document.getElementById('teacherAuthModal').classList.add('hidden');
+        }
+
+        function verifyTeacherPass() {
+            const inputVal = document.getElementById('teacherPassInput').value;
+            if (inputVal === TEACHER_PIN) {
+                document.getElementById('teacherAuthModal').classList.add('hidden');
+                switchView('teacher');
+            } else {
+                document.getElementById('passErrorMsg').classList.remove('hidden');
+            }
+        }
+
+        // View Switcher
+        function switchView(view) {
+            currentView = view;
+            const studentView = document.getElementById('studentView');
+            const teacherView = document.getElementById('teacherView');
+            const tabStudentBtn = document.getElementById('tabStudentBtn');
+            const tabTeacherBtn = document.getElementById('tabTeacherBtn');
+
+            if (view === 'student') {
+                studentView.classList.remove('hidden');
+                teacherView.classList.add('hidden');
+
+                tabStudentBtn.className = "px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-sky-700 shadow-sm";
+                tabTeacherBtn.className = "px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-600 hover:text-sky-700";
+            } else {
+                studentView.classList.add('hidden');
+                teacherView.classList.remove('hidden');
+
+                tabTeacherBtn.className = "px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all bg-white text-indigo-700 shadow-sm";
+                tabStudentBtn.className = "px-4 py-1.5 rounded-lg text-xs md:text-sm font-bold transition-all text-slate-600 hover:text-sky-700";
+
+                fetchTeacherData();
+            }
+        }
+
+        // Start Dictation Exercise
+        function startDictation(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('studentNameInput').value.trim();
+            const classInput = document.getElementById('studentClassInput').value.trim();
+
+            if (!nameInput || !classInput) return;
+
+            studentInfo.name = nameInput;
+            studentInfo.className = classInput;
+
+            document.getElementById('badgeInfo').innerText = `${studentInfo.name} (${studentInfo.className})`;
+            document.getElementById('attemptCountText').innerText = attemptCount;
+
+            document.getElementById('studentInfoCard').classList.add('hidden');
+            document.getElementById('practiceContainer').classList.remove('hidden');
+            document.getElementById('resultCertificateCard').classList.add('hidden');
+
+            currentQuestionIndex = 0;
+            studentAnswers = [];
+            loadQuestion(currentQuestionIndex);
+        }
+
+        // Load specific question
+        function loadQuestion(index) {
+            const q = QUESTIONS[index];
+            const total = QUESTIONS.length;
+
+            // UI updates
+            document.getElementById('progressBar').style.width = `${((index + 1) / total) * 100}%`;
+            document.getElementById('progressText').innerText = `Câu ${index + 1}/${total}`;
+
+            document.getElementById('dictationInput').value = '';
+            document.getElementById('dictationInput').disabled = false;
+            document.getElementById('feedbackBox').classList.add('hidden');
+
+            document.getElementById('checkAnswerBtn').classList.remove('hidden');
+            document.getElementById('nextQuestionBtn').classList.add('hidden');
+            document.getElementById('retrySentenceBtn').classList.add('hidden');
+
+            // Auto play audio once loaded
+            setTimeout(() => {
+                playAudio(1.0);
+            }, 300);
+        }
+
+        // Web Speech Synthesis API for audio playback with voice selection
+        function playAudio(rate = 1.0) {
+            if (!('speechSynthesis' in window)) {
+                alert("Trình duyệt của bạn không hỗ trợ phát âm thanh Web Speech. Hãy dùng Chrome hoặc Safari!");
+                return;
+            }
+
+            window.speechSynthesis.cancel(); // Stop ongoing speech
+
+            const text = QUESTIONS[currentQuestionIndex].sentence;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = rate; // 1.0 = Normal, 0.65 = Slow
+            utterance.pitch = selectedGender === 'female' ? 1.05 : 0.92;
+
+            // Pick appropriate voice
+            const voice = getBestVoice(selectedGender);
+            if (voice) {
+                utterance.voice = voice;
+            }
+
+            // Highlight button visual feedback
+            const btn = rate === 1.0 ? document.getElementById('playNormalBtn') : document.getElementById('playSlowBtn');
+            btn.classList.add('ring-4', 'ring-sky-300');
+            
+            utterance.onend = () => {
+                btn.classList.remove('ring-4', 'ring-sky-300');
+            };
+
+            utterance.onerror = () => {
+                btn.classList.remove('ring-4', 'ring-sky-300');
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Expose helper to global window
+        window.setVoiceGender = setVoiceGender;
+
+        // Insert punctuation helper
+        function insertPunctuation(symbol) {
+            const input = document.getElementById('dictationInput');
+            input.value += symbol;
+            input.focus();
+        }
+
+        function clearInput() {
+            document.getElementById('dictationInput').value = '';
+            document.getElementById('dictationInput').focus();
+        }
+
+        // Clean string helper for accurate diff
+        function normalizeText(text) {
+            return text.toLowerCase()
+                .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
+                .replace(/\s{2,}/g, " ")
+                .trim();
+        }
+
+        function checkAnswer() {
+            const userRaw = document.getElementById('dictationInput').value.trim();
+            if (!userRaw) {
+                alert("Em hãy gõ lại câu vừa nghe trước khi bấm Kiểm tra nhé!");
+                return;
+            }
+
+            const currentQ = QUESTIONS[currentQuestionIndex];
+            const cleanUser = normalizeText(userRaw);
+            const cleanTarget = normalizeText(currentQ.sentence);
+
+            const isCorrect = cleanUser === cleanTarget;
+
+            // Generate detailed diff highlighting
+            const targetWords = currentQ.sentence.split(" ");
+            const userWords = userRaw.split(" ");
+
+            let diffHTML = "";
+            let mistakeWords = [];
+
+            // Simple word-by-word comparison for kids
+            targetWords.forEach((word, idx) => {
+                const cleanWord = normalizeText(word);
+                const userWord = userWords[idx] ? normalizeText(userWords[idx]) : "";
+
+                if (cleanWord === userWord) {
+                    diffHTML += `<span class="text-emerald-600 font-extrabold mr-1 shadow-sm px-1 bg-emerald-50 rounded">${word}</span> `;
+                } else {
+                    mistakeWords.push({ expected: word, actual: userWords[idx] || "([thiếu])" });
+                    diffHTML += `<span class="text-red-500 font-extrabold line-through mr-1 bg-red-50 px-1 rounded">${userWords[idx] || "___"}</span>`;
+                    diffHTML += `<span class="text-indigo-600 font-extrabold mr-1 bg-indigo-50 px-1 rounded">(${word})</span> `;
+                }
+            });
+
+            // Save record
+            studentAnswers[currentQuestionIndex] = {
+                questionId: currentQ.id,
+                targetSentence: currentQ.sentence,
+                translation: currentQ.translation,
+                typedAnswer: userRaw,
+                isCorrect: isCorrect,
+                mistakes: mistakeWords
+            };
+
+            // Display Feedback Box
+            const feedbackBox = document.getElementById('feedbackBox');
+            const feedbackHeader = document.getElementById('feedbackHeader');
+            const feedbackDiff = document.getElementById('feedbackDiff');
+
+            feedbackBox.classList.remove('hidden');
+
+            if (isCorrect) {
+                feedbackBox.className = "rounded-2xl p-4 border bg-emerald-50 border-emerald-200 text-emerald-800 space-y-2";
+                feedbackHeader.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i><span>Giỏi lắm! Em đã gõ chính xác 100%! 🎉</span>`;
+                feedbackDiff.innerHTML = `<p class="text-slate-600 text-xs font-semibold">Dịch nghĩa: ${currentQ.translation}</p>`;
+            } else {
+                feedbackBox.className = "rounded-2xl p-4 border bg-amber-50 border-amber-200 text-amber-900 space-y-2";
+                feedbackHeader.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-500 text-lg"></i><span>Chưa chính xác hoàn toàn! Xem so sánh dưới đây:</span>`;
+                feedbackDiff.innerHTML = `
+                    <div class="mb-2 text-sm leading-relaxed">${diffHTML}</div>
+                    <p class="text-slate-600 text-xs font-semibold">Dịch nghĩa: ${currentQ.translation}</p>
+                `;
+            }
+
+            document.getElementById('dictationInput').disabled = true;
+            document.getElementById('checkAnswerBtn').classList.add('hidden');
+            document.getElementById('nextQuestionBtn').classList.remove('hidden');
+            document.getElementById('retrySentenceBtn').classList.remove('hidden');
+        }
+
+        // Retry specific sentence
+        function retrySentence() {
+            document.getElementById('dictationInput').disabled = false;
+            document.getElementById('dictationInput').focus();
+            document.getElementById('feedbackBox').classList.add('hidden');
+
+            document.getElementById('checkAnswerBtn').classList.remove('hidden');
+            document.getElementById('nextQuestionBtn').classList.add('hidden');
+            document.getElementById('retrySentenceBtn').classList.add('hidden');
+        }
+
+        // Next Question
+        function nextQuestion() {
+            if (currentQuestionIndex < QUESTIONS.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion(currentQuestionIndex);
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            // Calculate final score
+            const correctCount = studentAnswers.filter(a => a && a.isCorrect).length;
+            const scorePercent = Math.round((correctCount / QUESTIONS.length) * 100);
+
+            // Populate Certificate Card
+            document.getElementById('resName').innerText = studentInfo.name;
+            document.getElementById('resClass').innerText = studentInfo.className;
+            document.getElementById('resAttempts').innerText = attemptCount;
+            document.getElementById('resTime').innerText = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }) + ' ' + new Date().toLocaleDateString('vi-VN');
+            document.getElementById('resScore').innerText = `${scorePercent}/100`;
+
+            let gradeTitle = "Xuất Sắc! 🎉";
+            if (scorePercent < 50) gradeTitle = "Em Cần Cố Gắng Hơn! 💪";
+            else if (scorePercent < 80) gradeTitle = "Khá Tốt! 👍";
+            else if (scorePercent < 100) gradeTitle = "Rất Giỏi! ⭐";
+
+            document.getElementById('resGradeTitle').innerText = gradeTitle;
+
+            // Render breakdown list
+            const breakdownContainer = document.getElementById('sentenceBreakdownList');
+            breakdownContainer.innerHTML = '';
+
+            studentAnswers.forEach((ans, idx) => {
+                const item = document.createElement('div');
+                item.className = `p-3 rounded-2xl border text-sm flex items-start space-x-3 ${ans.isCorrect ? 'bg-emerald-50/50 border-emerald-100' : 'bg-red-50/50 border-red-100'}`;
+                
+                item.innerHTML = `
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0 ${ans.isCorrect ? 'bg-emerald-500 text-white' : 'bg-red-500 text-white'}">
+                        ${idx + 1}
+                    </div>
+                    <div class="flex-grow space-y-1">
+                        <div class="flex items-center justify-between">
+                            <strong class="text-slate-800 font-bold">${ans.targetSentence}</strong>
+                            <span class="text-xs font-extrabold ${ans.isCorrect ? 'text-emerald-600' : 'text-red-500'}">
+                                ${ans.isCorrect ? 'Đúng (10đ)' : 'Sai (0đ)'}
+                            </span>
+                        </div>
+                        <div class="text-xs text-slate-500">
+                            Em viết: <span class="${ans.isCorrect ? 'text-emerald-700' : 'text-red-600'} font-semibold">${ans.typedAnswer || '(bỏ trống)'}</span>
+                        </div>
+                    </div>
+                `;
+                breakdownContainer.appendChild(item);
+            });
+
+            // Switch to Certificate view
+            document.getElementById('practiceContainer').classList.add('hidden');
+            document.getElementById('resultCertificateCard').classList.remove('hidden');
+
+            // Save payload to Firestore
+            const submissionPayload = {
+                studentName: studentInfo.name,
+                className: studentInfo.className,
+                attempts: attemptCount,
+                score: scorePercent,
+                correctCount: correctCount,
+                totalQuestions: QUESTIONS.length,
+                answers: studentAnswers
+            };
+
+            if (window.saveSubmissionToCloud) {
+                window.saveSubmissionToCloud(submissionPayload);
+            }
+        }
+
+        // Retake full quiz option
+        function retakeFullQuiz() {
+            attemptCount++;
+            document.getElementById('attemptCountText').innerText = attemptCount;
+            document.getElementById('resultCertificateCard').classList.add('hidden');
+            document.getElementById('practiceContainer').classList.remove('hidden');
+
+            currentQuestionIndex = 0;
+            studentAnswers = [];
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function fetchTeacherData() {
+            const tableBody = document.getElementById('teacherTableBody');
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6" class="p-6 text-center text-slate-400">
+                        <i class="fa-solid fa-spinner fa-spin text-indigo-500 text-xl mb-2 block"></i>
+                        Đang tải danh sách kết quả học sinh...
+                    </td>
+                </tr>
+            `;
+
+            if (window.listenTeacherData) {
+                window.listenTeacherData((data) => {
+                    allSubmissions = data;
+                    populateClassFilter(data);
+                    renderTeacherTable(data);
+                });
+            }
+        }
+
+        function populateClassFilter(data) {
+            const select = document.getElementById('teacherClassFilter');
+            const classes = [...new Set(data.map(d => d.className).filter(Boolean))];
+            
+            select.innerHTML = '<option value="">Tất cả các lớp</option>';
+            classes.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = `Lớp ${c}`;
+                select.appendChild(opt);
+            });
+        }
+
+        function filterSubmissions() {
+            const query = document.getElementById('teacherSearchInput').value.toLowerCase().trim();
+            const classVal = document.getElementById('teacherClassFilter').value;
+
+            const filtered = allSubmissions.filter(s => {
+                const matchName = (s.studentName || '').toLowerCase().includes(query);
+                const matchClass = !classVal || s.className === classVal;
+                return matchName && matchClass;
+            });
+
+            renderTeacherTable(filtered);
+        }
+
+        function renderTeacherTable(data) {
+            const tableBody = document.getElementById('teacherTableBody');
+            if (!data || data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="p-6 text-center text-slate-400">
+                            Chưa có dữ liệu học sinh nộp bài.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            // Sort newest first
+            data.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
+
+            tableBody.innerHTML = '';
+            data.forEach(sub => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50/80 transition-colors";
+
+                const dateStr = sub.timestamp ? new Date(sub.timestamp).toLocaleString('vi-VN') : '--';
+
+                tr.innerHTML = `
+                    <td class="p-3.5 font-bold text-slate-800">${sub.studentName || 'Chưa tên'}</td>
+                    <td class="p-3.5 text-slate-600 font-semibold">${sub.className || '--'}</td>
+                    <td class="p-3.5 text-center font-extrabold text-base ${sub.score >= 80 ? 'text-emerald-600' : sub.score >= 50 ? 'text-amber-600' : 'text-red-500'}">
+                        ${sub.score}/100
+                    </td>
+                    <td class="p-3.5 text-center font-bold text-slate-700">${sub.attempts || 1}</td>
+                    <td class="p-3.5 text-xs text-slate-400">${dateStr}</td>
+                    <td class="p-3.5 text-center">
+                        <button onclick='viewStudentDetails(${JSON.stringify(sub).replace(/'/g, "&apos;")})' class="px-3 py-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-bold rounded-lg text-xs transition-all">
+                            Xem chi tiết sai ở đâu
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // View Detail Modal
+        window.viewStudentDetails = function(sub) {
+            document.getElementById('modalStudentName').innerText = `Bài làm của: ${sub.studentName}`;
+            document.getElementById('modalStudentMeta').innerText = `Lớp: ${sub.className} | Số lần làm: ${sub.attempts || 1} | Điểm: ${sub.score}/100`;
+
+            const list = document.getElementById('modalBreakdownList');
+            list.innerHTML = '';
+
+            if (sub.answers && sub.answers.length > 0) {
+                sub.answers.forEach((ans, idx) => {
+                    const item = document.createElement('div');
+                    item.className = `p-3 rounded-2xl border text-sm space-y-1 ${ans.isCorrect ? 'bg-emerald-50 border-emerald-100' : 'bg-red-50 border-red-100'}`;
+                    
+                    item.innerHTML = `
+                        <div class="flex items-center justify-between font-bold">
+                            <span class="text-slate-800">Câu ${idx + 1}: ${ans.targetSentence}</span>
+                            <span class="${ans.isCorrect ? 'text-emerald-600' : 'text-red-500'}">${ans.isCorrect ? 'ĐÚNG' : 'SAI'}</span>
+                        </div>
+                        <div class="text-xs text-slate-600">
+                            <strong>Học sinh viết:</strong> <span class="font-bold ${ans.isCorrect ? 'text-emerald-700' : 'text-red-600'}">${ans.typedAnswer || '(không nhập)'}</span>
+                        </div>
+                    `;
+                    list.appendChild(item);
+                });
+            } else {
+                list.innerHTML = '<p class="text-xs text-slate-400">Không có dữ liệu chi tiết câu trả lời.</p>';
+            }
+
+            document.getElementById('detailModal').classList.remove('hidden');
+        };
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+        window.closeModal = closeModal;
+        window.requestTeacherAccess = requestTeacherAccess;
+        window.closeTeacherAuthModal = closeTeacherAuthModal;
+        window.verifyTeacherPass = verifyTeacherPass;
+    </script>
+</body>
+</html>
